@@ -17,6 +17,9 @@ export default async function AddProfilePage() {
   if (!user) {
     redirect(authOptions?.pages?.signIn ?? "/login")
   }
+  console.log('----- user :: 2 ---')
+  console.log(user)
+  console.log('----- user :: 2 ---')
 
   const profiles = await prisma.profile.findMany({
     where: {
@@ -32,6 +35,10 @@ export default async function AddProfilePage() {
       icon: true,
     },
   })
+
+  console.log('----- profiles ---')
+  console.log(profiles)
+  console.log('----- profiles ---')
 
   const unusedIcons = await prisma.icon.findMany({
     where: {
@@ -49,16 +56,39 @@ export default async function AddProfilePage() {
       href: true,
     },
   })
-  const randomIcon =
+
+
+  let randomIcon =
     unusedIcons && unusedIcons[Math.floor(Math.random() * unusedIcons.length)]
 
-  if (!profiles || !randomIcon) {
-    redirect("/profiles")
-  }
+    const iconId = profiles.length + 1;
+    const iconHref = Math.floor(Math.random() * 2) === 0? "/images/classic-profile-icon-gray.webp": "/images/classic-profile-icon-red.webp"
+    if(!randomIcon){
+      randomIcon = {
+        id: `${iconId}`,
+        title: `icon_${iconId}`,
+        href: iconHref
+      }
+    }
+  // if (!profiles || !randomIcon) {
+  //   redirect("/profiles")
+  // }
 
   return (
     <section>
-      <AddProfileForm profiles={profiles} profileIcon={randomIcon} />
+      {profiles.length > 4 ? (
+      
+      
+      (
+        <section className="container flex min-h-screen w-full max-w-xl flex-col items-center justify-center">
+          <div className="w-full rounded-md bg-zinc-800/25 p-14 backdrop-blur-lg">
+            <h1 className="mb-4 text-center text-3xl font-bold">Max profiles reached</h1>
+          </div>
+        </section>
+      )
+      ) : (<AddProfileForm profiles={profiles} profileIcon={randomIcon} />)}
+      
+    
     </section>
   )
 }

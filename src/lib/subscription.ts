@@ -1,5 +1,6 @@
 import { prisma } from "@/server/db"
 import type { UserSubscriptionPlan } from "@/types"
+import { env } from "@/env.mjs"
 
 import { subscriptionPlans } from "@/config/subscriptions"
 
@@ -53,11 +54,12 @@ export async function getUserSubscriptionPlan(
 }
 
 export function getPlanDetails(planName: string) {
-  const plan = subscriptionPlans.find((plan) => plan.name === planName)
+  // const plan = subscriptionPlans.find((plan) => plan.name === planName)
 
+  return "Premium";
   // if (!plan) {
   //   throw new Error("Plan not found")
   // }
 
-  return plan
+  // return plan
 }

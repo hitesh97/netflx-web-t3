@@ -78,6 +78,21 @@ export const profileRouter = createTRPCRouter({
         })
       }
 
+      const icon = await ctx.prisma.icon.findFirst({
+        where: {
+          id: input.iconId
+        },
+      })
+
+      if (!icon) {
+        await ctx.prisma.icon.create({
+          data: {
+            id: input.iconId,
+            title: "icon_1",
+            href: "/images/classic-profile-icon-gray.webp",
+          },
+        })
+      }
       const profile = await ctx.prisma.profile.create({
         data: {
           user: { connect: { id: ctx.session.user.id } },

@@ -7,13 +7,13 @@ import { toast } from "react-hot-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 
-const LoginButton = () => {
+const LoginButton = ({strategy}: {strategy:string}) => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const loginWithGoogle = async () => {
+  const loginWithStrategy = async () => {
     setIsLoading(true)
     try {
-      await signIn("google")
+      await signIn(strategy)
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Something went wrong"
@@ -23,12 +23,28 @@ const LoginButton = () => {
     }
   }
 
-  return (
+  {return strategy === "discord" ? (<Button
+    aria-label="Login with Discord"
+    variant="brand"
+    className="w-full"
+    onClick={isLoading ? undefined : loginWithStrategy}
+    disabled={isLoading}
+  >
+    {isLoading ? (
+      <Icons.spinner
+        className="mr-2 h-4 w-4 animate-spin"
+        aria-hidden="true"
+      />
+    ) : (
+      <Icons.discord className="mr-2 h-4 w-4" aria-hidden="true" />
+    )}
+    Discord
+  </Button>) :  (
     <Button
       aria-label="Login with Google"
       variant="brand"
       className="w-full"
-      onClick={isLoading ? undefined : loginWithGoogle}
+      onClick={isLoading ? undefined : loginWithStrategy}
       disabled={isLoading}
     >
       {isLoading ? (
@@ -41,7 +57,7 @@ const LoginButton = () => {
       )}
       Google
     </Button>
-  )
+  )}
 }
 
 export default LoginButton

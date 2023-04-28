@@ -85,7 +85,7 @@ const ProfilesScreen = ({ session, children }: ProfilesScreenProps) => {
                   className="group h-auto flex-col space-y-2 p-0 hover:bg-transparent focus:ring-0 focus:ring-offset-0 active:scale-[0.98] dark:hover:bg-transparent"
                   onClick={() => {
                     useProfileStore.setState({
-                      profile: profile,
+                      profile: profile ,
                       pinForm: profile.pin ? true : false,
                     })
                   }}
@@ -93,8 +93,8 @@ const ProfilesScreen = ({ session, children }: ProfilesScreenProps) => {
                   <div className="relative aspect-square h-24 w-fit overflow-hidden rounded shadow-sm group-hover:ring-2 group-hover:ring-slate-50 sm:h-28 md:h-32">
                     {profile.icon ? (
                       <Image
-                        src={profile.icon.href}
-                        alt={profile.icon.title}
+                        src={profile?.icon?.href}
+                        alt={profile?.icon?.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 
                           (max-width: 1200px) 50vw, 33vw"
