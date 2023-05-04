@@ -6,6 +6,7 @@ import { getCurrentUser } from "@/lib/session"
 import Hero from "@/components/hero"
 import LoadingScreen from "@/components/screens/loading-screen"
 import ShowsContainer from "@/components/shows-container"
+import { Sidebar } from "@/components/layouts/sidebar"
 
 export default async function Home() {
   const user = await getCurrentUser()
@@ -46,9 +47,15 @@ export default async function Home() {
   return (
     <section>
       <Suspense fallback={<LoadingScreen />}>
-        <div className="pb-16 pt-10">
-          <Hero shows={allShows.netflix ?? []} />
-          <ShowsContainer user={user} shows={allShowsByCategory} />
+        <div className="grid md:grid-cols-12">
+          {/* <Hero shows={allShows.netflix ?? []} />
+          <ShowsContainer user={user} shows={allShowsByCategory} /> */}
+          <Sidebar playlists={["list 1", "list 2", "list 3"]} className="hidden md:block" />
+          <div className="col-span-3 md:col-span-11 lg:border-l">
+                <div className="h-full px-4 py-6 lg:px-8">
+Other content area
+                </div>
+                </div>
         </div>
       </Suspense>
     </section>

@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button"
 
 const SiteFooter = () => {
   return (
-    <footer aria-label="Footer" className="w-full">
+    <footer aria-label="Footer" className="w-full border-t">
       <div className="container grid w-full max-w-6xl gap-7 py-10 text-neutral-400">
         <div className="flex flex-wrap items-center gap-2">
           {siteConfig.socialLinks.map(
