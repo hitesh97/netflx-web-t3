@@ -60,7 +60,7 @@ const ExpandableSearchbar = <TData extends object>({
         type="text"
         placeholder="Search..."
         className={cn(
-          "h-auto rounded-none py-1.5 pl-8 text-sm transition-all dark:placeholder:text-slate-300 dark:focus:ring-offset-0",
+          "h-auto rounded-none py-1.5 pl-8 text-sm transition-all dark:placeholder:text-slate-300 dark:focus:ring-offset-0 ring-offset-0",
           isOpen
             ? "w-24 border dark:border-slate-500 xxs:w-28 xs:w-44"
             : "w-0 border-none",
@@ -83,7 +83,7 @@ const ExpandableSearchbar = <TData extends object>({
       >
         <Icons.search
           className={cn(
-            "text-slate-50 transition-opacity hover:opacity-75 active:scale-95",
+            "text-slate-400 transition-opacity hover:opacity-75 active:scale-95 stroke-slate-500",
             isOpen ? "h-4 w-4" : "h-5 w-5"
           )}
           aria-hidden="true"

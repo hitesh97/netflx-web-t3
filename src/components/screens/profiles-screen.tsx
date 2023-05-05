@@ -13,6 +13,8 @@ import type { Session } from "next-auth"
 // import { Icons } from "@/components/icons"
 import SiteFooter from "@/components/layouts/site-footer"
 import SiteHeader from "@/components/layouts/site-header"
+import { Sidebar } from "../layouts/sidebar"
+
 // import { Button } from "@/components/ui/button"
 // import { Skeleton } from "@/components/ui/skeleton"
 
@@ -96,7 +98,7 @@ const ProfilesScreen = ({ session, children }: ProfilesScreenProps) => {
   //                       src={profile?.icon?.href}
   //                       alt={profile?.icon?.title}
   //                       fill
-  //                       sizes="(max-width: 768px) 100vw, 
+  //                       sizes="(max-width: 768px) 100vw,
   //                         (max-width: 1200px) 50vw, 33vw"
   //                       priority
   //                       className="object-cover"
@@ -137,7 +139,15 @@ const ProfilesScreen = ({ session, children }: ProfilesScreenProps) => {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader session={session} />
-      <main className="flex-1">{children}</main>
+      <div className="grid min-h-screen grid-cols-12">
+        <Sidebar
+          playlists={["list 1", "list 2", "list 3"]}
+          className="block border-r"
+        />
+        <div className="col-span-11 block h-full py-4">
+          <main className="flex-1">{children}</main>
+        </div>
+      </div>
       <SiteFooter />
     </div>
   )

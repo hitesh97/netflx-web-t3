@@ -81,7 +81,7 @@ export function MainNav({ items }: MainNavProps) {
         <DropdownMenuContent
           align="start"
           sideOffset={20}
-          className="w-52 overflow-y-auto overflow-x-hidden rounded-sm dark:bg-neutral-800 dark:text-slate-200"
+          className="w-52 overflow-y-auto overflow-x-hidden rounded-sm bg-slate-100 dark:bg-neutral-800 dark:text-slate-200"
         >
           <DropdownMenuLabel>
             <Link
